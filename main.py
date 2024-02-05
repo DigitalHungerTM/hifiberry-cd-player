@@ -7,7 +7,7 @@ from time import sleep
 from RPi import GPIO
 import json
 
-INTERVAL = 1
+TIMEOUT = 3
 
 def main():
     # set up MPD client
@@ -25,11 +25,11 @@ def main():
     # main loop
     try:
         old_uuid = ""
-        playing = False
+        playing = True
         while True:
             # scan rfid tag
             print("Hold a tag near the reader")
-            uuid = reader.read_id(timeout=5)
+            uuid = reader.read_id(timeout=TIMEOUT)
             if playing and not uuid: # stop playback
                 print("no tag found, stopping playback")
                 if mpd_funcs.stop_playback(client):
@@ -39,7 +39,9 @@ def main():
                     print("something went wrong")
 
             # check if tag is new
-            if uuid != old_uuid: # early exit
+            if not uuid:
+                print("no tag found, sleeping")
+            elif uuid != old_uuid: # early exit
                 print("new tag detected, playing album")
                 playing = True
                 old_uuid = uuid
@@ -48,8 +50,8 @@ def main():
                     print("playing album", album_name)
                 else:
                     print("something went wrong")
-            
-            sleep(INTERVAL)
+            else:
+                print("same tag as before, album already playing")
 
     except KeyboardInterrupt:
         GPIO.cleanup()
