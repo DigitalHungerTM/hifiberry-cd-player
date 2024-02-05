@@ -30,7 +30,7 @@ def main():
     try:
         while True:
             # scan rfid tag
-            print("Hold a tag near the reader")
+            print("Hold a tag near the reader (press CTRL+C to exit)")
             uuid, _ = reader.read()
             print("ID: ", uuid)
             album_name = input("Enter the album name:\n")
