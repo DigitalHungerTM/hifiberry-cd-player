@@ -4,6 +4,7 @@ from mfrc522 import SimpleMFRC522
 import sys
 from time import sleep
 from RPi import GPIO
+import json
 
 INTERVAL = 1
 
@@ -18,9 +19,8 @@ def main():
     reader = SimpleMFRC522()
 
     # load database
-    database = {
-        1: "Hyperspace"
-    } # database example
+    with open("uuid_to_album_name.json", "r") as f:
+        database = json.load(f)
 
     # main loop
     try:
@@ -36,12 +36,12 @@ def main():
                 sleep(INTERVAL)
             else: # play new album
                 old_uuid = uuid
-                uuid = 1
                 album_name = database[uuid]
                 if mpd_funcs.play_album(album_name, client):
                     print("playing album", album_name)
                 else:
                     print("something went wrong")
+                sleep(INTERVAL)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
