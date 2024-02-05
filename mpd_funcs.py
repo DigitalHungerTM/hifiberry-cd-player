@@ -1,4 +1,3 @@
-from mpd import MPDClient
 from os import listdir
 from os.path import isfile, join
 
@@ -15,7 +14,7 @@ AUDIO_FILE_TYPES = ["m4a", "wav", "flac", "mp3", "mp4", "wma", "aac", "ogg", "al
 
 def get_songs_in_folder(path: str) -> list[str]:
     """
-    list files ending in .flac in a folder
+    list audio files in a folder
     path: path of folder
     return: list of song names
     """
@@ -26,27 +25,35 @@ def get_songs_in_folder(path: str) -> list[str]:
     )
     return songs
 
-def main():
-    # set up connection with mpd socket
-    client = MPDClient()
-    client.timeout = 10
-    client.idletimeout = None
+
+def play_album(album: str, client):
+    """
+    uses the mpd socket to play specified `album`
+    album: the album to be played
+    client: an MPDClient object
+    return: 0 for fail, 1 for succes
+    """
+    # connect the client
     client.connect(LOCAL_MPD_SOCKET) # defaults to port 6600 if none is provided
     client.clear() # clear current queue
-    # print(client.mpd_version)
-    # print(client.find("album", "Hyperspace")) # find example
-    
     # add songs to queue
-    songs = get_songs_in_folder(FINAL_ALBUM_PATH)
+    album_path = ALBUMS_PATH + album + "/"
+    songs = get_songs_in_folder(album_path)
     for song in songs:
-        client.add(FINAL_ALBUM_PATH + song)
+        client.add(album_path + song)
 
     # turn on play
     client.play()
-    
-    # disconnect the client
+
+    # disconnect client
     client.close()
     client.disconnect()
+
+
+def main():
+    print("not meant to be run directly")
+    print("please import the functions in this file to another script")
+    exit(-1)
 
 
 if __name__ == "__main__":
