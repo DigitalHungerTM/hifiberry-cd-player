@@ -34,6 +34,7 @@ def main():
                 print("no tag found, stopping playback")
                 if mpd_funcs.stop_playback(client):
                     old_uuid = "" # reset old uuid so that album replays when it is placed again
+                    playing = False
                     print("stopped playback")
                 else:
                     print("something went wrong")
