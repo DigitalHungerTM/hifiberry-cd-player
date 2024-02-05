@@ -5,7 +5,7 @@ from RPi import GPIO
 import json
 
 # relative path
-DATABASE_FILENAME = ""
+DATABASE_FILENAME = "uuid_to_album_name.json"
 
 def write_to_db(uuid, album_name):
     """
