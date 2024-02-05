@@ -1,6 +1,7 @@
 from mpd import MPDClient
 import mpd_funcs
 import rfid_reader.SimpleMFRC522 as SimpleMFRC522
+from rfid_reader import SimpleMFRC522
 import sys
 from time import sleep
 from RPi import GPIO
