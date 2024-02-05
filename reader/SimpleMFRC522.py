@@ -1,7 +1,7 @@
 # Code by Simon Monk https://github.com/simonmonk/
 # Edited by Mathijs Afman https://github.com/DigitalHungerTM
 
-from .mfrc522 import MFRC522
+from . import MFRC522
 import RPi.GPIO as GPIO
 from time import sleep
   
