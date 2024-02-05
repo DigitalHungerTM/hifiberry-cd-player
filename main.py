@@ -36,6 +36,7 @@ def main():
                 sleep(INTERVAL)
             else: # play new album
                 old_uuid = uuid
+                uuid = 1
                 album_name = database[uuid]
                 if mpd_funcs.play_album(album_name, client):
                     print("playing album", album_name)

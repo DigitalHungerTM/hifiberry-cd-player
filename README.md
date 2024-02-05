@@ -12,6 +12,8 @@ Scan RFID tag in a cd case to play its album, that is stored on a network share.
 ```bash
 # update pip
 python3 -m pip install --upgrade pip
+
+# install packages
 pip3 install setuptools wheel spidev mfrc522
 
 # clone the repo
