@@ -6,7 +6,7 @@ from mpd import MPDClient, MPDError, CommandError
 LOCAL_MPD_SOCKET = "/var/run/mpd/socket"
 
 NAS_FOLDER = "undefined-vault-K70iu/"
-ALBUMS_PATH = "/data/library/" + NAS_FOLDER
+ALBUMS_PATH = "/data/library/music/" + NAS_FOLDER
 ALBUM_NAME = "Hyperspace"
 FINAL_ALBUM_PATH = ALBUMS_PATH + ALBUM_NAME + "/"
 
