@@ -70,7 +70,7 @@ def stop_playback(client):
     client.connect(LOCAL_MPD_SOCKET) # defaults to port 6600 if none is provided
     try:
         client.clear() # clear current queue
-        client.stop()
+        client.pause(1)
     except CommandError:
         # safely disconnect client
         client.close()
