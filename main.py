@@ -15,7 +15,7 @@ def main():
     client.idletimeout = None
 
     # set up RFID reader
-    reader = SimpleMFRC522()
+    reader = SimpleMFRC522.SimpleMFRC522()
 
     # load database
     with open("uuid_to_album_name.json", "r") as f:
