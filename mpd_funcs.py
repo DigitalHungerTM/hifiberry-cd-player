@@ -60,6 +60,31 @@ def play_album(album: str, client):
     return 1
 
 
+def stop_playback(client):
+    """
+    stops playback
+    client: an MPDClient object
+    return: 0 for fail, 1 for succes
+    """
+    # connect the client
+    client.connect(LOCAL_MPD_SOCKET) # defaults to port 6600 if none is provided
+    try:
+        client.clear() # clear current queue
+        client.stop()
+    except CommandError:
+        # safely disconnect client
+        client.close()
+        client.disconnect()
+        return 0
+    except MPDError:
+        return 0
+
+    # disconnect client
+    client.close()
+    client.disconnect()
+    return 1
+
+
 def main():
     print("not meant to be run directly")
     print("please import the functions in this file to another script")

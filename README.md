@@ -17,7 +17,7 @@ Scan RFID tag in a cd case to play its album, that is stored on a network share.
 python3 -m pip install --upgrade pip
 
 # install packages
-pip3 install setuptools wheel spidev mfrc522
+pip3 install setuptools wheel spidev
 
 # clone the repo
 git clone https://github.com/DigitalHungerTM/hifiberry-cd-player.git
