@@ -8,6 +8,7 @@ from RPi import GPIO
 import json
 
 TIMEOUT = 3
+INTERVAL = 1
 
 def main():
     # set up MPD client
@@ -42,6 +43,7 @@ def main():
             # check if tag is new
             if not uuid:
                 print("no tag found, sleeping")
+                sleep(INTERVAL)
             elif uuid != old_uuid: # early exit
                 print("new tag detected, playing album")
                 playing = True
