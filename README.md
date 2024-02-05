@@ -1,7 +1,9 @@
 # HiFiBerry cd player
+
 Scan RFID tag in a cd case to play its album, that is stored on a network share.
 
 ## TODO
+
 - buy hifiberry dac
 - make case
 - add run at boot entry
@@ -9,6 +11,7 @@ Scan RFID tag in a cd case to play its album, that is stored on a network share.
 - add database code
 
 ## Installation
+
 ```bash
 # update pip
 python3 -m pip install --upgrade pip
