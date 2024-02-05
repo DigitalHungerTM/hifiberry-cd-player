@@ -43,7 +43,6 @@ def main():
             # check if tag is new
             if not uuid:
                 print("no tag found, sleeping")
-                sleep(INTERVAL)
             elif uuid != old_uuid: # early exit
                 print("new tag detected, playing album")
                 playing = True
@@ -51,6 +50,7 @@ def main():
                 album_name = database[str(uuid)]
                 if mpd_funcs.play_album(album_name, client):
                     print("playing album", album_name)
+                    sleep(INTERVAL)
                 else:
                     print("something went wrong")
             else:
