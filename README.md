@@ -6,6 +6,7 @@ Scan RFID tag in a cd case to play its album, that is stored on a network share.
 - make case
 - add run at boot entry
 - add RFID reader python code
+- add database code
 
 ## Installation
 ```bash

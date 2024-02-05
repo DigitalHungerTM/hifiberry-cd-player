@@ -1,5 +1,6 @@
 from os import listdir
 from os.path import isfile, join
+from mpd import MPDClient, MPDError, CommandError
 
 # set constants
 LOCAL_MPD_SOCKET = "/var/run/mpd/socket"
@@ -40,7 +41,15 @@ def play_album(album: str, client):
     album_path = ALBUMS_PATH + album + "/"
     songs = get_songs_in_folder(album_path)
     for song in songs:
-        client.add(album_path + song)
+        try:
+            client.add(album_path + song)
+        except CommandError:
+            # safely disconnect client
+            client.close()
+            client.disconnect()
+            return 0
+        except MPDError:
+            return 0
 
     # turn on play
     client.play()
@@ -48,6 +57,7 @@ def play_album(album: str, client):
     # disconnect client
     client.close()
     client.disconnect()
+    return 1
 
 
 def main():
