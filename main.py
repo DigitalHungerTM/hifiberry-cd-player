@@ -10,7 +10,7 @@ import json
 TIMEOUT = 3
 INTERVAL = 1
 VERBOSE = False
-if sys.argv[1] == "--verbose":
+if sys.argv[1] and sys.argv[1] == "--verbose":
     VERBOSE = True
 
 def verbose_print(*args):
