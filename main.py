@@ -49,7 +49,7 @@ def main():
                     playing = False
                     verbose_print("stopped playback")
                 else:
-                    verbose_print("something went wrong")
+                    print("something went wrong")
 
             # check if tag is new
             if not uuid:
@@ -61,15 +61,15 @@ def main():
                 album_name = database[str(uuid)]
                 if mpd_funcs.play_album(album_name, client):
                     verbose_print("playing album", album_name)
-                    sleep(INTERVAL)
                 else:
-                    verbose_print("something went wrong")
+                    print("something went wrong")
             else:
                 verbose_print("same tag as before, album already playing")
+                sleep(INTERVAL)
 
     except KeyboardInterrupt:
         GPIO.cleanup()
-        verbose_print("KeyboardInterrupt")
+        print("KeyboardInterrupt")
         exit(0)
     except:
         GPIO.cleanup()
